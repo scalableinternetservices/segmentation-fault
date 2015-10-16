@@ -6,7 +6,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.string :type
       t.string :securityPass
       t.date :expirationDate
-      t.double :price
+      t.decimal :price
 
       t.timestamps null: false
     end
