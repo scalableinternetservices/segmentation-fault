@@ -9,12 +9,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'rename'
 group :development, :test do
-  gem 'mysql2', '~> 0.3.18'
   gem 'byebug'
 end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'mysql2', '~> 0.3.13'
 end
 gem 'bootstrap-sass'
 gem 'devise'
