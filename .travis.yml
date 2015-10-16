@@ -1,0 +1,17 @@
+language: ruby
+rvm:
+  - "2.1.3"
+os:
+  - linux
+notifications:
+  email:
+    recipients:
+      - spiros.mastorakis@gmail.com
+      - sweattm92@gmail.com
+      - rishi.mody@hotmail.com
+    on_success: always
+    on_failure: always
+env:
+  - NODE_LABELS="Linux Ubuntu Ubuntu-14.04"
+script:
+  # tests to be defined later
