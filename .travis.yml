@@ -12,6 +12,11 @@ notifications:
     on_success: always
     on_failure: always
 env:
+  - RAILS_ENV=test
+  - DB=mysql
   - NODE_LABELS="Linux Ubuntu Ubuntu-14.04"
+before_script:
+  - sudo bundle exec rake db:create
+  - sudo bundle exec rake db:migrate
 script:
   # tests to be defined later
