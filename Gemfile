@@ -8,6 +8,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'rename'
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'fog'
 group :development, :test do
   gem 'byebug'
 end
