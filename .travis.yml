@@ -1,6 +1,14 @@
 language: ruby
 rvm:
   - "2.1.3"
+notifications:		
+  email:		
+    recipients:		
+      spiros.mastorakis@gmail.com		
+      sweattm92@gmail.com		
+      rishi.mody@hotmail.com		
+    on_success: never		
+    on_failure: always
 before_script:
   - mysql -e 'create database party_bnb_test;'
 
