@@ -1,4 +1,4 @@
-<%= form_for(@post, url: posts_path, html: {multipart: true}) do |f| %>
+<%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -27,10 +26,22 @@
     <%= f.label :availability %><br>
     <%= f.datetime_select :availability %>
   </div>
+    <%= f.label :restrictions %><br>
+    <%= f.text_area :restrictions %>
+ </div>
+ <div class="field">
+   Category<br />
+   <%= f.select :categories, @cat %>
+</div>
+<%= f.fields_for :post_images do |img| %>
+  <div class="field">
+    <%= img.file_field :image %>
+  </div>
+<% end %>
   <div>
-    <%= f.file_field :image %>
+    <%= link_to "Add Images", new_post_image_path(post_id: @post.id) %>
   </div>
-  <div class="actions">
+<div class="actions">
     <%= f.submit %>
-  </div>
+</div>
 <% end %>
