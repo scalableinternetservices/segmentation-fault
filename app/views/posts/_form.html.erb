@@ -28,11 +28,10 @@
     <%= f.datetime_select :availability %>
   </div>
   <div>
-    <%= f.file_field :image %>
-  </div>
    <%= f.label :post_images %>
     <%= file_field_tag "images[]", type: :file, multiple: true %>
-  <div class="actions">
+  </div>
+ <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
