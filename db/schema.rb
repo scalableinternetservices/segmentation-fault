@@ -31,8 +31,6 @@ ActiveRecord::Schema.define(version: 20151022044901) do
     t.datetime "availability"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
-    t.string   "categories",   limit: 255
-    t.text     "restrictions", limit: 65535
   end
 
   create_table "transactions", force: :cascade do |t|

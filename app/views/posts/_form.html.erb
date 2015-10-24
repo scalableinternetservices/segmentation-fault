@@ -25,22 +25,6 @@
   <div class="field">
     <%= f.label :availability %><br>
     <%= f.datetime_select :availability %>
-  </div>
-    <%= f.label :restrictions %><br>
-    <%= f.text_area :restrictions %>
- </div>
- <div class="field">
-   Category<br />
-   <%= f.select :categories, @cat %>
-</div>
-<%= f.fields_for :post_images do |img| %>
-  <div class="field">
-    <%= img.file_field :image %>
-  </div>
-<% end %>
-  <div>
-    <%= link_to "Add Images", new_post_image_path(post_id: @post.id) %>
-  </div>
 <div class="actions">
     <%= f.submit %>
 </div>
