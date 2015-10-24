@@ -14,8 +14,7 @@ class PostImagesController < ApplicationController
 
   # GET /post_images/new
   def new
-    @post_image = PostImage.new
-#    @options = {"foo" => 1, "bar" => 2}
+    @post_image = PostImage.new(post_id: params[:post_id])
     all_posts = Post.all
     @options = all_posts.collect do |s|
       [s.name, s.id]
