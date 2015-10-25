@@ -32,6 +32,10 @@
     <%= f.label :restrictions %><br>
     <%= f.text_area :restrictions %>
   </div>
+  <div class="field">
+    Category<br />
+    <%= f.select :categories, @cat %>
+  </div>
    <%= f.label :post_images %>
     <%= file_field_tag "images[]", type: :file, multiple: true %>
   </div>

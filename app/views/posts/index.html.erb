@@ -11,6 +11,7 @@
       <th>Price</th>
       <th>Availability</th>
       <th>Restrictions</th>
+      <th>Category</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
         <td><%= post.price %></td>
         <td><%= post.availability %></td>
         <td><%= post.restrictions %></td>
+        <td><%= post.categories %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
