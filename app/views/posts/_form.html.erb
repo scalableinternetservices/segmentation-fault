@@ -28,6 +28,10 @@
     <%= f.datetime_select :availability %>
   </div>
   <div>
+  <div class="field">
+    <%= f.label :restrictions %><br>
+    <%= f.text_area :restrictions %>
+  </div>
    <%= f.label :post_images %>
     <%= file_field_tag "images[]", type: :file, multiple: true %>
   </div>
