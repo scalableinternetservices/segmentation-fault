@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022044901) do
+ActiveRecord::Schema.define(version: 20151029182402) do
 
   create_table "post_images", force: :cascade do |t|
     t.string   "image_url",          limit: 255
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 20151022044901) do
     t.datetime "availability"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.text     "restrictions", limit: 65535
+    t.string   "categories",   limit: 255
+    t.integer  "user_id",      limit: 4
   end
 
   create_table "transactions", force: :cascade do |t|
