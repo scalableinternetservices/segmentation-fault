@@ -36,6 +36,6 @@ post_image = PostImage.create(image: image)
               updated_at: rand_time(1.days.ago),
               restrictions: Faker::Lorem.paragraph,
               categories: "Mansion",
-              user: user, post_images: [post_image])
+              owner: user, post_images: [post_image])
 end
 
