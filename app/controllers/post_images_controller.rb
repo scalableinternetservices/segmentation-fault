@@ -12,6 +12,9 @@ class PostImagesController < ApplicationController
   def show
   end
 
+  def book
+  end
+
   # GET /post_images/new
   def new
     @post_image = PostImage.new(post_id: params[:post_id])
@@ -19,9 +22,6 @@ class PostImagesController < ApplicationController
     @options = all_posts.collect do |s|
       [s.name, s.id]
     end
-
-
-
   end
 
   # GET /post_images/1/edit

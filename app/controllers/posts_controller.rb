@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :book]
+  before_action :authenticate_user!, only: [:create, :book]
 
   # GET /posts
   # GET /posts.json
@@ -11,6 +11,13 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+  end
+
+  # GET /posts/book/1
+  def book
+    money = Transaction.create(price: @post.price)
+    booking = Booking.create(user_id: current_user.id, transaction_id: money.id, post_id: @post.id)
+    booking.save
   end
 
   # GET /posts/new
@@ -35,10 +42,7 @@ class PostsController < ApplicationController
     # end
 
     @post = Post.new(post_params)
-
-    @post.user = current_user
-
-
+    @post.owner = current_user
     respond_to do |format|
       if @post.save
         if params[:images]
