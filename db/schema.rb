@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029182402) do
+ActiveRecord::Schema.define(version: 20151029235423) do
 
   create_table "post_images", force: :cascade do |t|
     t.string   "image_url",          limit: 255
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20151029182402) do
     t.string   "name",         limit: 255
     t.text     "description",  limit: 65535
     t.decimal  "price",                      precision: 10
-    t.datetime "availability"
+    t.date     "availability"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.text     "restrictions", limit: 65535
