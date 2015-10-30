@@ -36,7 +36,7 @@ class PostsController < ApplicationController
 
     @post = Post.new(post_params)
 
-    @post.user = current_user
+    @post.owner = current_user
 
 
     respond_to do |format|
