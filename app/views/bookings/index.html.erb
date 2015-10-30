@@ -13,16 +13,16 @@
   </thead>
 
   <tbody>
-    <% @bookings.each do |booking| %>
+  <% @bookings.each do |booking| %>
       <tr>
-        <td><%= booking.user %></td>
-        <td><%= booking.transaction %></td>
-        <td><%= booking.post %></td>
+        <td><%= booking.user.id %></td>
+        <td><%= booking.money.id %></td>
+        <td><%= booking.post.id %></td>
         <td><%= link_to 'Show', booking %></td>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
         <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
