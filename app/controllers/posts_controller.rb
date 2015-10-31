@@ -27,6 +27,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @cat = ["", "Apartment", "Event Space", "Hotel", "Mansion", "Service", "Other"]
   end
 
   # POST /posts
