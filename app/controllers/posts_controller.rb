@@ -6,6 +6,11 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    bookings = Booking.all
+    @posts = @posts.select do |p|
+      matches = bookings.select {|b| b.post_id == p.id}
+      matches == nil
+    end
   end
 
   # GET /posts/1
