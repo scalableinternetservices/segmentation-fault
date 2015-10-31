@@ -1,11 +1,18 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :book]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :book, :check_user]
+  before_action :check_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:create, :book]
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all.select{|p| p.booking == nil}
+  end
+
+  def check_user
+    if current_user.id != @post.user_id
+      head(401)
+    end
   end
 
   # GET /posts/1
