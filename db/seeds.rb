@@ -18,12 +18,12 @@ def rand_time(from, to=Time.now)
   Time.at(rand_in_range(from.to_f, to.to_f))
 end
 
-image = File.open(Dir['app/photos/*.png'].sample)
-post_image = PostImage.create(image: image)
-
 #puts 'CREATED ADMIN USER: ' << user.email
 
 100.times do |i|
+  image = File.open(Dir['app/assets/images/*.png'].sample)
+  post_image = PostImage.create(image: image)
+
   user = User.create!(email: Faker::Internet.email,
                       name: Faker::Name.first_name,
                       password: '123456789',
