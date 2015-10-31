@@ -17,7 +17,6 @@ class PostsController < ApplicationController
   def book
     money = Transaction.create(price: @post.price)
     booking = Booking.create(user_id: current_user.id, transaction_id: money.id, post_id: @post.id)
-    booking.save
   end
 
   # GET /posts/new
