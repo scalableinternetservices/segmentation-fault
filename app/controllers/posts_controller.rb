@@ -5,12 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-    bookings = Booking.all
-    @posts = @posts.select do |p|
-      matches = bookings.select {|b| b.post_id == p.id}
-      matches == nil
-    end
+    @posts = Post.all.select{|p| p.booking == nil}
   end
 
   # GET /posts/1
@@ -37,14 +32,6 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-
-    # if !current_user
-    #   respond_to do |format|
-    #     format.html { render :new }
-    #     format.json { render json: @post.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
     @post = Post.new(post_params)
     @post.owner = current_user
     respond_to do |format|
