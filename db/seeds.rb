@@ -24,18 +24,27 @@ end
   image = File.open(Dir['app/assets/images/*.png'].sample)
   post_image = PostImage.create(image: image)
 
-  user = User.create!(email: Faker::Internet.email,
-                      name: Faker::Name.first_name,
-                      password: '123456789',
-                      password_confirmation: '123456789')
-  Post.create(name: "Post ##{i}",
-              description: Faker::Lorem.paragraph,
-              price: rand_in_range(100, 1),
-              availability: rand_time(5.days.from_now),
-              created_at: rand_time(2.days.ago),
-              updated_at: rand_time(1.days.ago),
-              restrictions: Faker::Lorem.paragraph,
-              categories: "Mansion",
-              owner: user, post_images: [post_image])
+  user1 = User.create!(email: Faker::Internet.email,
+                       name: Faker::Name.first_name,
+                       password: '123456789',
+                       password_confirmation: '123456789')
+
+  post = Post.create(name: "Post ##{i}",
+                     description: Faker::Lorem.paragraph,
+                     price: rand_in_range(100, 1),
+                     availability: rand_time(5.days.from_now),
+                     created_at: rand_time(2.days.ago),
+                     updated_at: rand_time(1.days.ago),
+                     restrictions: Faker::Lorem.paragraph,
+                     categories: "Mansion",
+                     owner: user1, post_images: [post_image])
+
+  user2 = User.create!(email: Faker::Internet.email,
+                       name: Faker::Name.first_name,
+                       password: '123456789',
+                       password_confirmation: '123456789')
+
+  Booking.create(user: user2, post: post)
+
 end
 
