@@ -21,6 +21,9 @@ end
 #puts 'CREATED ADMIN USER: ' << user.email
 
 100.times do |i|
+
+  # seeding posts
+
   image = File.open(Dir['app/assets/images/*.png'].sample)
   post_image = PostImage.create(image: image)
 
@@ -39,12 +42,25 @@ end
                      categories: "Mansion",
                      owner: user1, post_images: [post_image])
 
+  # seeding (or at least trying to seed) bookings
   user2 = User.create!(email: Faker::Internet.email,
                        name: Faker::Name.first_name,
                        password: '123456789',
                        password_confirmation: '123456789')
 
-  Booking.create(user: user2, post: post)
+  sign_in(user: user2)
+
+  post.book(user_id: user2.id, post_id: post.id)
+
+  sign_out(user: user2)
+
+  # seeding transactions (commented out for now)
+  #Transaction.create(creditCardNumber: '123456789',
+  #                   cardholderName: Faker::Name.last_name,
+  #                   type: 'visa',
+  #                   securityPass: '123',
+  #                   expirationDate: rand_time(300.days.from_now),
+  #                   price: '10')
 
 end
 
