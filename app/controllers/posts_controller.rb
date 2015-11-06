@@ -35,9 +35,11 @@ class PostsController < ApplicationController
 
   # Post /posts/book/1
   def book
+    user_id = params[:user_id]
     money = Transaction.create(price: @post.price)
-    booking = Booking.create(user_id: current_user.id, transaction_id: money.id, post_id: @post.id)
+    booking = Booking.create(user_id: user_id, transaction_id: money.id, post_id: @post.id)
   end
+  helper_method :book
 
   # GET /posts/new
   def new
@@ -105,6 +107,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name, :image, :description, :price, :availability, :restrictions, :categories, :post_images)
+      params.require(:post).permit(:name, :description, :price, :availability, :restrictions, :categories, :post_images)
     end
 end
