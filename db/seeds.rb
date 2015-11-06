@@ -43,16 +43,16 @@ end
                      owner: user1, post_images: [post_image])
 
   # seeding (or at least trying to seed) bookings
-  user2 = User.create!(email: Faker::Internet.email,
-                       name: Faker::Name.first_name,
-                       password: '123456789',
-                       password_confirmation: '123456789')
+  #user2 = User.create!(email: Faker::Internet.email,
+  #                     name: Faker::Name.first_name,
+  #                     password: '123456789',
+  #                     password_confirmation: '123456789')
 
-  sign_in(user: user2)
+  # sign_in(user: user2)
 
-  post.book(user_id: user2.id, post_id: post.id)
+  # post.book(user_id: user2.id, post_id: post.id)
 
-  sign_out(user: user2)
+  # sign_out(user: user2)
 
   # seeding transactions (commented out for now)
   #Transaction.create(creditCardNumber: '123456789',
