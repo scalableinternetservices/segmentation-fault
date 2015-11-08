@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @posts = Post.all.select{|p| p.booking == nil}
   end
 
-  def check_user_is_owner
+  def user_is_owner
     if current_user.id != @post.user_id
       head(401)
     end
