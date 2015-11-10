@@ -27,10 +27,10 @@ end
   image = File.open(Dir['app/assets/images/*.png'].sample)
   post_image = PostImage.create(image: image)
 
-  user1 = User.create!(email: Faker::Internet.email,
-                       name: Faker::Name.first_name,
-                       password: '123456789',
-                       password_confirmation: '123456789')
+  user = User.create!(email: Faker::Internet.email,
+                      name: Faker::Name.first_name,
+                      password: '123456789',
+                      password_confirmation: '123456789')
 
   post = Post.create(name: "Post ##{i}",
                      description: Faker::Lorem.paragraph,
@@ -40,21 +40,14 @@ end
                      updated_at: rand_time(1.days.ago),
                      restrictions: Faker::Lorem.paragraph,
                      categories: "Mansion",
-                     owner: user1, post_images: [post_image])
-
-  # seeding (or at least trying to seed) bookings
-
-  user2 = User.create(email: Faker::Internet.email,
-                      name: Faker::Name.first_name,
-                      password: '123456789',
-                      password_confirmation: '123456789')
+                     owner: user, post_images: [post_image])
 
   #inlined version of Post.book method, because I cannot call the method here
 
   if (i % 10 == 0)
 
     money = Transaction.create(price: post.price)
-    booking = Booking.create(user_id: user1.id, transaction_id: money.id, post_id: post.id)
+    booking = Booking.create(user_id: user.id, transaction_id: money.id, post_id: post.id)
 
   end
 
