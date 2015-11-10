@@ -29,7 +29,6 @@ development:
 #  database: party_bnb_test
 
 test:
-  <<: *default
   adapter: mysql2
   database: party_bnb_test
   username: travis
