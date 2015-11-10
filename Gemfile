@@ -12,6 +12,7 @@ gem 'rename'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'fog'
+gem 'test-unit'
 group :development, :test do
   gem 'byebug'
 end
