@@ -12,6 +12,7 @@ gem 'rename'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'fog'
+gem 'test-unit'
 group :development, :test do
   gem 'byebug'
 end
@@ -30,7 +31,6 @@ group :development do
 end
 group :development, :test do
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'rspec-rails'
 end
 group :test do
