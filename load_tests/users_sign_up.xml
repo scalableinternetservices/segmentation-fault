@@ -9,13 +9,14 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-33-197-241.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-24-212-125.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
   <load>
-    <arrivalphase phase="1" duration="20" unit="second">
+    <arrivalphase phase="1" duration="60" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
+    <!--
     <arrivalphase phase="2" duration="20" unit="second">
       <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
@@ -34,17 +35,12 @@
    <arrivalphase phase="7" duration="20" unit="second">
      <users arrivalrate="64" unit="second"></users>
    </arrivalphase>
-    <!--
+
    <arrivalphase phase="8" duration="20" unit="second">
      <users arrivalrate="128" unit="second"></users>
    </arrivalphase>
-   <arrivalphase phase="9" duration="20" unit="second">
-     <users arrivalrate="256" unit="second"></users>
-   </arrivalphase>
-   <arrivalphase phase="10" duration="20" unit="second">
-     <users arrivalrate="512" unit="second"></users>
-   </arrivalphase>
--->
+   -->
+
   </load>
 
   <options>
@@ -59,6 +55,28 @@
   <sessions>
     <session name="http-example" probability="100" type="ts_http">
       <request> <http url="/" method="GET" version="1.1"></http> </request>
+
+      <!-- wait for up to 2 seconds, user is thinking what to do -->
+      <thinktime value="2" random="true"></thinktime>
+      <!-- sign up -->
+      <request>
+        <http url='/users/sign_up' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- random string for user name -->
+      <setdynvars sourcetype="random_string" length="6">
+        <var name="user_name" />
+      </setdynvars>
+
+      <!-- fill in the sign up form-->
+      <request subst="true">
+        <http
+                url='/users'
+                version='1.1'
+                method='POST'
+                contents='user%5Bname%5D=%%_user_name%%&amp;user%5Bemail%5D=%%_user_name%%%40gmail.com&amp;user%5Bpassword%5D=12345678&amp;user%5Bpassword_confirmation%5D=12345678&amp;commit=Sign+up' >
+        </http>
+      </request>
 
       <!-- wait for up to 2 seconds, user is looking at posts -->
       <thinktime value="2" random="true"></thinktime>
