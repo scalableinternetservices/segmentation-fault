@@ -10,6 +10,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show
+    fresh_when(@transaction)
   end
 
   # GET /transactions/new
