@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.select{|p| p.booking == nil}
+    @posts = Post.all.select{|p| p.booking == nil} if stale?(Post.all) || stale?(Booking.all)
   end
 
   def user_is_owner
@@ -31,13 +31,14 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    fresh_when(@post)
   end
 
   # Post /posts/book/1
   def book
-    user_id = params[:user_id]
+    user = User.find(params[:user_id])
     money = Transaction.create(price: @post.price)
-    booking = Booking.create(user_id: user_id, transaction_id: money.id, post_id: @post.id)
+    user.bookings.create(user_id: user.id, transaction_id: money.id, post_id: @post.id)
     respond_to do |format|
         format.html { redirect_to posts_path, notice: 'Booking was successfully created.' }
         format.json { head :no_content }
@@ -47,7 +48,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post = Post.new if stale?(Post.all)
     @cat = ["", "Apartment", "Event Space", "Hotel", "Mansion", "Service", "Other"]
   end
 
