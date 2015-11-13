@@ -69,6 +69,7 @@ number_of_users.times do |i|
     end
   end
   #inlined version of Post.book method, because I cannot call the method here
+<<<<<<< HEAD
   if i % 10 == 0
     post = Post.all.limit(1).order(sql_function_random).take
     user = User.all.limit(1).order(sql_function_random).take
