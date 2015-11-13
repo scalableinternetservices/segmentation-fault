@@ -45,10 +45,8 @@ end
   #inlined version of Post.book method, because I cannot call the method here
 
   if (i % 10 == 0)
-
     money = Transaction.create(price: post.price)
     booking = Booking.create(user_id: user.id, transaction_id: money.id, post_id: post.id)
-
   end
 
 end
