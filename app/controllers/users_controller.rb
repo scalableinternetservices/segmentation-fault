@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    fresh_when(@user)
+  end
+
   def profile
     @posts = @user.posts if stale?(@user.posts)
     @bookings = @user.bookings if stale?(@user.bookings)

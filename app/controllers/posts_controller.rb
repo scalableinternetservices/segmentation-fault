@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.select{|p| p.booking == nil} if stale?(Post.all) || stale?(Booking.all)
+    @posts = Post.all.select{|p| p.booking == nil} if (stale?([Booking.all, Post.all]))
   end
 
   def check_user_is_owner
@@ -79,6 +79,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    fresh_when(@post)
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }

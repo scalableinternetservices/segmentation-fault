@@ -4,12 +4,13 @@ class PostImagesController < ApplicationController
   # GET /post_images
   # GET /post_images.json
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.all if stale?(@post_images.all)
   end
 
   # GET /post_images/1
   # GET /post_images/1.json
   def show
+    fresh_when(@post_image)
   end
 
   def book
@@ -17,8 +18,8 @@ class PostImagesController < ApplicationController
 
   # GET /post_images/new
   def new
-    @post_image = PostImage.new(post_id: params[:post_id])
-    all_posts = Post.all
+    @post_image = PostImage.new(post_id: params[:post_id]) if stale?(PostImages.all)
+    all_posts = Post.all if stale?(Post.all)
     @options = all_posts.collect do |s|
       [s.name, s.id]
     end
@@ -52,6 +53,7 @@ class PostImagesController < ApplicationController
   # PATCH/PUT /post_images/1
   # PATCH/PUT /post_images/1.json
   def update
+    fresh_when(@post_image)
     respond_to do |format|
       if @post_image.update(post_image_params)
         format.html { redirect_to @post_image, notice: 'Post image was successfully updated.' }
