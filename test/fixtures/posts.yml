@@ -1,0 +1,11 @@
+one:
+  name: 'Test Post 1'
+  description: 'This is a test post'
+  price: 100.0
+  categories: 'Mansion'
+
+two:
+  name: 'Test Post 2'
+  description: 'This is another test post'
+  price: 200.0
+  categories: 'Mansion'
