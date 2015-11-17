@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def profile
     @posts = @user.posts
     @bookings = @user.bookings
-    end
+  end
 
 private
   # Use callbacks to share common setup or constraints between actions.
