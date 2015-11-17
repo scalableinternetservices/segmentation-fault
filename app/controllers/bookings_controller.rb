@@ -1,10 +1,12 @@
+require 'will_paginate/array'
+
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    @bookings = Booking.all.paginate(:page => params[:page])
   end
 
   # GET /bookings/1

@@ -1,10 +1,12 @@
+require 'will_paginate/array'
+
 class PostImagesController < ApplicationController
   before_action :set_post_image, only: [:show, :edit, :update, :destroy]
 
   # GET /post_images
   # GET /post_images.json
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.all.paginate(:page => params[:page])
   end
 
   # GET /post_images/1
