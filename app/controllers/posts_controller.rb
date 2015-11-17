@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :book, :check_user_is_owner, :check_user_not_owner]
   before_action :check_user_is_owner, only: [:edit, :update, :destroy]
@@ -7,7 +9,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.select{|p| p.booking == nil}
+    @posts = Post.select{|p| p.booking == nil}.paginate(:page => params[:page])
   end
 
   def user_is_owner
