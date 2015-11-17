@@ -21,6 +21,7 @@ end
 #puts 'CREATED ADMIN USER: ' << user.email
 
 count = 0
+userid = 0
 
 1000.times do |i|
 
@@ -29,10 +30,19 @@ count = 0
   image = File.open(Dir['app/assets/images/*.png'].sample)
   post_image = PostImage.create(image: image)
 
-  user = User.create!(email: Faker::Internet.email,
-                      name: Faker::Name.first_name,
-                      password: '123456789',
-                      password_confirmation: '123456789')
+  if (userid < 100)
+    user = User.create!(email: userid.to_s + "@test.com",
+                        name: userid,
+                        password: '123456789',
+                        password_confirmation: '123456789')
+
+    userid = userid + 1
+  else
+    user = User.create!(email: Faker::Internet.email,
+                        name: Faker::Name.first_name,
+                        password: '123456789',
+                        password_confirmation: '123456789')
+  end
 
   post = Post.create(name: "Post ##{count}",
                      description: Faker::Lorem.paragraph,
