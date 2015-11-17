@@ -1,10 +1,12 @@
+require 'will_paginate/array'
+
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.all.paginate(:page => params[:page])
   end
 
   # GET /transactions/1

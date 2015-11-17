@@ -1,9 +1,11 @@
+require 'will_paginate/array'
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :profile]
 
   def index
-    @users = User.all
+    @users = User.all.paginate(:page => params[:page])
   end
 
   def show
@@ -13,8 +15,8 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @posts = @user.posts
-    @bookings = @user.bookings
+    @posts = @user.posts.paginate(:page => params[:page])
+    @bookings = @user.bookings.paginate(:page => params[:page])
     end
 
 private
