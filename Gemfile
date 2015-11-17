@@ -10,7 +10,7 @@ gem 'faker'
 gem 'jbuilder', '~> 2.0'
 gem 'rename'
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'fog'
 gem 'test-unit'
 group :development, :test do

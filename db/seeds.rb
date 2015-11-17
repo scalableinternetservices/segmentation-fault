@@ -20,7 +20,9 @@ end
 
 #puts 'CREATED ADMIN USER: ' << user.email
 
-100.times do |i|
+count = 0
+
+1000.times do |i|
 
   # seeding posts
 
@@ -32,7 +34,7 @@ end
                       password: '123456789',
                       password_confirmation: '123456789')
 
-  post = Post.create(name: "Post ##{i}",
+  post = Post.create(name: "Post ##{count}",
                      description: Faker::Lorem.paragraph,
                      price: rand_in_range(100, 1),
                      availability: rand_time(5.days.from_now),
@@ -41,6 +43,24 @@ end
                      restrictions: Faker::Lorem.paragraph,
                      categories: "Mansion",
                      owner: user, post_images: [post_image])
+
+  count = count + 1
+
+  9.times do |j|
+
+    post = Post.create(name: "Post ##{count}",
+                       description: Faker::Lorem.paragraph,
+                       price: rand_in_range(100, 1),
+                       availability: rand_time(5.days.from_now),
+                       created_at: rand_time(2.days.ago),
+                       updated_at: rand_time(1.days.ago),
+                       restrictions: Faker::Lorem.paragraph,
+                       categories: "Mansion",
+                       owner: user, post_images: [post_image])
+
+    count = count + 1
+
+  end
 
   #inlined version of Post.book method, because I cannot call the method here
 
