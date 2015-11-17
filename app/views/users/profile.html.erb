@@ -49,12 +49,12 @@
   </thead>
 
   <tbody>
-  <% @bookings.each do |booking| %>
+  <% @bookings.includes(:post).each do |booking| %>
       <tr>
         <td><%= booking.user_id %></td>
         <td><%= booking.post_id %></td>
         <td><%= booking.transaction_id %></td>
-        <td><%= link_to 'Show', Post.find(booking.post_id) %></td>
+        <td><%= link_to 'Show', booking.post %></td>
       </tr>
   <% end %>
   </tbody>
