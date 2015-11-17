@@ -13,6 +13,9 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'fog'
 gem 'test-unit'
+gem 'ar-octopus'
+gem 'activerecord-mysql-adapter'
+
 group :development, :test do
   gem 'byebug'
 end
