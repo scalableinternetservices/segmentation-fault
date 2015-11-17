@@ -13,6 +13,8 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'fog'
 gem 'test-unit'
+gem 'will_paginate'
+
 group :development, :test do
   gem 'byebug'
 end
