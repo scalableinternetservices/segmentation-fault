@@ -55,6 +55,7 @@
         <td><%= booking.post_id %></td>
         <td><%= booking.transaction_id %></td>
         <td><%= link_to 'Show', Post.find(booking.post_id) %></td>
+        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
   </tbody>
