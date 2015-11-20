@@ -7,7 +7,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.includes(:booking).all.select{|p| p.booking == nil}
+    # @posts = Post.includes(:booking).all.select{|p| p.booking == nil}
+    @posts = Post.all.select{|p| p.booking_id == nil}
   end
 
   def user_is_owner
