@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20151125072822) do
     t.text     "restrictions", limit: 65535
     t.string   "categories",   limit: 255
     t.integer  "user_id",      limit: 4
+    t.integer  "booking_id",   limit: 4
   end
 
   create_table "seed_mutexes", force: :cascade do |t|
