@@ -39,6 +39,8 @@ class PostsController < ApplicationController
     user_id = params[:user_id]
     money = Transaction.create(price: @post.price)
     booking = Booking.create(user_id: user_id, transaction_id: money.id, post_id: @post.id)
+    @post.booking_id = booking.id
+    @post.save!
     respond_to do |format|
         format.html { redirect_to posts_path, notice: 'Booking was successfully created.' }
         format.json { head :no_content }
