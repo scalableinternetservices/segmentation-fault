@@ -39,10 +39,11 @@ class PostsController < ApplicationController
     user = User.find(params[:user_id])
     money = Transaction.create(price: @post.price)
     user.bookings.create(user_id: user.id, transaction_id: money.id, post_id: @post.id)
-    respond_to do |format|
+    respond_to do |format|  
         format.html { redirect_to posts_path, notice: 'Booking was successfully created.' }
         format.json { head :no_content }
     end
+
   end
   helper_method :book
 
