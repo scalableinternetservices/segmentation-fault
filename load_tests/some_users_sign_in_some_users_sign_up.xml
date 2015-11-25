@@ -9,15 +9,15 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-24-212-125.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-32-240-196.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
   <load>
-    <arrivalphase phase="1" duration="60" unit="second">
+    <arrivalphase phase="1" duration="20" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="2" duration="20" unit="second">
-      <users arrivalrate="2" unit="second"></users>
+    <arrivalphase phase="2" duration="5" unit="second">
+      <users arrivalrate="10" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="3" duration="20" unit="second">
       <users arrivalrate="4" unit="second"></users>
@@ -31,18 +31,20 @@
    <arrivalphase phase="6" duration="20" unit="second">
      <users arrivalrate="32" unit="second"></users>
    </arrivalphase>
+    <!--
    <arrivalphase phase="7" duration="20" unit="second">
      <users arrivalrate="64" unit="second"></users>
    </arrivalphase>
    <arrivalphase phase="8" duration="20" unit="second">
      <users arrivalrate="128" unit="second"></users>
    </arrivalphase>
+   -->
 
   </load>
 
   <options>
     <!-- Set connection timeout to 2 seconds -->
-    <option name="glocal_ack_timeout" value="2000"></option>
+    <option name="global_ack_timeout" value="2000"></option>
 
     <option type="ts_http" name="user_agent">
       <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
@@ -50,6 +52,7 @@
   </options>
 
   <sessions>
+
     <session name="sign-up" probability="50" type="ts_http">
       <request> <http url="/" method="GET" version="1.1"></http> </request>
 
@@ -65,7 +68,7 @@
         <var name="user_name" />
       </setdynvars>
 
-      <!-- fill in the sign up form-->
+      <!-- fill in the sign up form -->
       <request subst="true">
         <http
                 url='/users'
@@ -87,7 +90,7 @@
       <thinktime value="5" random="true"></thinktime>
 
       <!-- create a random number to view a post -->
-      <setdynvars sourcetype="random_number" start="1" end="99">
+      <setdynvars sourcetype="random_number" start="1" end="9999">
         <var name="random_post_id" />
       </setdynvars>
 
@@ -96,7 +99,7 @@
         <http url="/posts/%%_random_post_id%%"  version='1.1' method='GET'></http>
       </request>
 
-      <!-- book the post-->
+      <!-- book the post -->
       <request subst="true">
         <http
                 url='/posts/book'
@@ -113,23 +116,24 @@
 
       <!-- wait for up to 2 seconds, user is thinking what to do -->
       <thinktime value="2" random="true"></thinktime>
-      <!-- sign up -->
+
+      <!-- sign in -->
       <request>
-        <http url='/users/sign_up' version='1.1' method='GET'></http>
+        <http url='/users/sign_in' version='1.1' method='GET'></http>
       </request>
 
-      <!-- random string for user name -->
-      <setdynvars sourcetype="random_string" length="6">
-        <var name="user_name" />
+      <!-- create a random number as a user name -->
+      <setdynvars sourcetype="random_number" start="1" end="99">
+        <var name="random_name" />
       </setdynvars>
 
       <!-- fill in the sign up form-->
       <request subst="true">
         <http
-                url='/users'
+                url='/users/sign_in'
                 version='1.1'
                 method='POST'
-                contents='user%5Bname%5D=%%_user_name%%&amp;user%5Bemail%5D=%%_user_name%%%40gmail.com&amp;user%5Bpassword%5D=12345678&amp;user%5Bpassword_confirmation%5D=12345678&amp;commit=Sign+up' >
+                contents='user%5Bemail%5D=%%_random_name%%%40test.com&amp;user%5Bpassword%5D=123456789&amp;commit=Sign+in' >
         </http>
       </request>
 
@@ -145,7 +149,7 @@
       <thinktime value="5" random="true"></thinktime>
 
       <!-- create a random number to view a post -->
-      <setdynvars sourcetype="random_number" start="1" end="99">
+      <setdynvars sourcetype="random_number" start="1" end="9999">
         <var name="random_post_id" />
       </setdynvars>
 
@@ -154,14 +158,14 @@
         <http url="/posts/%%_random_post_id%%"  version='1.1' method='GET'></http>
       </request>
 
-      <!-- book the post-->
-      <request subst="true">
-        <http
-                url='/posts/book'
-                version='1.1'
-                method='POST'
-                contents='id=%%_random_post_id%%' >
-        </http>
+      <!-- create a random number to view a post -->
+      <setdynvars sourcetype="random_number" start="1" end="9999">
+        <var name="random_post_id2" />
+      </setdynvars>
+
+      <!-- view the post -->
+      <request>
+        <http url="/posts/%%_random_post_id2%%"  version='1.1' method='GET'></http>
       </request>
 
     </session>
