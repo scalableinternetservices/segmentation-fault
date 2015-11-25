@@ -23,6 +23,13 @@ end
 count = 0
 userid = 0
 
+begin
+  mutex = SeedMutex.create(acquired: true)
+rescue ActiveRecord::RecordNotUnique
+  mutex = nil
+end
+
+if mutex
 1000.times do |i|
 
   # seeding posts
@@ -82,4 +89,4 @@ userid = 0
   end
 
 end
-
+end

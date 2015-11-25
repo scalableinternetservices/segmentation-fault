@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030002401) do
+ActiveRecord::Schema.define(version: 20151125072822) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 20151030002401) do
     t.string   "categories",   limit: 255
     t.integer  "user_id",      limit: 4
   end
+
+  create_table "seed_mutexes", force: :cascade do |t|
+    t.boolean  "acquired"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "seed_mutexes", ["acquired"], name: "index_seed_mutexes_on_acquired", unique: true, using: :btree
 
   create_table "transactions", force: :cascade do |t|
     t.string   "creditCardNumber", limit: 255
