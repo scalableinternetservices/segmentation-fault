@@ -43,6 +43,7 @@ class PostsController < ApplicationController
         format.html { redirect_to posts_path, notice: 'Booking was successfully created.' }
         format.json { head :no_content }
     end
+
   end
   helper_method :book
 
