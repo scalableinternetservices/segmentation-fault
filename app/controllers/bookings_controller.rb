@@ -6,21 +6,24 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all.paginate(:page => params[:page])
+    @bookings = Booking.all.paginate(:page => params[:page]) if stale?(Booking.all.paginate(:page => params[:page]))
   end
 
   # GET /bookings/1
   # GET /bookings/1.json
   def show
+    fresh_when(@booking)
   end
 
   # GET /bookings/new
   def new
+    fresh_when(@booking)
     @booking = Booking.new
   end
 
   # GET /bookings/1/edit
   def edit
+    fresh_when(@booking)
   end
 
   # POST /bookings
@@ -42,6 +45,7 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
+    fresh_when(@booking)
     respond_to do |format|
       if @booking.update(booking_params)
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }

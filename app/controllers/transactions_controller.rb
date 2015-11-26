@@ -6,12 +6,13 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all.paginate(:page => params[:page])
+    @transactions = Transaction.all.paginate(:page => params[:page]) if stale?(Transaction.all.paginate(:page => params[:page]))
   end
 
   # GET /transactions/1
   # GET /transactions/1.json
   def show
+    fresh_when(@transaction)
   end
 
   # GET /transactions/new
@@ -21,6 +22,7 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
+    fresh_when(@transaction)
   end
 
   # POST /transactions
@@ -42,6 +44,7 @@ class TransactionsController < ApplicationController
   # PATCH/PUT /transactions/1
   # PATCH/PUT /transactions/1.json
   def update
+    fresh_when(@transaction)
     respond_to do |format|
       if @transaction.update(transaction_params)
         format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }

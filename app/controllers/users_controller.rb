@@ -5,24 +5,30 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :profile]
 
   def index
-    @users = User.all.paginate(:page => params[:page])
+    @users = User.all.paginate(:page => params[:page]) if stale?(User.all.paginate(:page => params[:page]))
   end
 
   def show
+    fresh_when(@user)
     unless @user == current_user
       redirect_to :back, :alert => "Access denied."
     end
   end
 
-  def profile
-    @posts = @user.posts.paginate(:page => params[:page])
-    @bookings = @user.bookings.paginate(:page => params[:page])
-    end
+  def edit
+    fresh_when(@user)
+  end
 
-private
-  # Use callbacks to share common setup or constraints between actions.
+  def profile
+    @posts = @user.posts.paginate(:page => params[:page]) if stale?(@user.posts)
+    @bookings = @user.bookings.paginate if stale?(@user.bookings)
+  end
+
+
+  private
   def set_user
     @user = User.find(params[:id])
   end
+
 
 end
