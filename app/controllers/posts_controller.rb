@@ -9,7 +9,9 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.select{|p| p.booking == nil}.paginate(:page => params[:page]) if (Post.select{|p| p.booking == nil}.paginate(:page => params[:page]))
+    # @posts = Post.includes(:booking).all.select{|p| p.booking == nil}
+    @posts = Post.all.select{|p| p.booking_id == nil}.paginate(:page => params[:page]) if (Post.select{|p| p.booking == nil}.paginate(:page => params[:page]))
+
   end
 
   def user_is_owner
@@ -41,6 +43,8 @@ class PostsController < ApplicationController
     user = User.find(params[:user_id])
     money = Transaction.create(price: @post.price)
     user.bookings.create(user_id: user.id, transaction_id: money.id, post_id: @post.id)
+    @post.booking_id = booking.id
+    @post.save!
     respond_to do |format|
         format.html { redirect_to posts_path, notice: 'Booking was successfully created.' }
         format.json { head :no_content }
