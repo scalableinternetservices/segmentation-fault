@@ -1,0 +1,42 @@
+octopus:
+  replicated: true
+  # if we want to send all the write queries to master, and all the read queries to slaves
+  # comment out the previous line and replace "false" with "true" in the following line
+  fully_replicated: false
+  environments:
+    - development
+    - production
+  development:
+    slave1:
+      adapter: mysql
+      host: localhost
+      database: party_bnb_development
+    slave2:
+      adapter: mysql
+      host: localhost
+      database: party_bnb_development
+    slave3:
+      adapter: mysql
+      host: localhost
+      database: party_bnb_development
+    slave4:
+      adapter: mysql
+      host: localhost
+      database: party_bnb_development
+  production:
+    slave1:
+      adapter: mysql
+      host: localhost
+      database: party_bnb_production
+    slave2:
+      adapter: mysql
+      host: localhost
+      database: party_bnb_production
+    slave3:
+      adapter: mysql
+      host: localhost
+      database: party_bnb_production
+    slave4:
+      adapter: mysql
+      host: localhost
+      database: party_bnb_production
