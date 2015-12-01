@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   def book
     user = User.find(params[:user_id])
     money = Transaction.create(price: @post.price)
-    user.bookings.create(user_id: user.id, transaction_id: money.id, post_id: @post.id)
+    booking = Booking.create(user_id: user.id, transaction_id: money.id, post_id: @post.id)
     @post.booking_id = booking.id
     @post.save!
     respond_to do |format|
