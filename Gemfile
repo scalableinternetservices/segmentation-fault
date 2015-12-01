@@ -13,10 +13,9 @@ gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'fog'
 gem 'test-unit'
-gem 'will_paginate'
 gem 'ar-octopus'
 gem 'activerecord-mysql-adapter'
-
+gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug'
