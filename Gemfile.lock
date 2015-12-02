@@ -31,10 +31,6 @@ GEM
       activemodel (= 4.2.4)
       activesupport (= 4.2.4)
       arel (~> 6.0)
-    activerecord-mysql-adapter (0.0.1)
-      activerecord (>= 3.2.9)
-      activesupport (>= 3.2.9)
-      mysql (>= 2.9.0)
     activesupport (4.2.4)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -42,9 +38,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
-    ar-octopus (0.8.5)
-      activerecord (>= 3.2.0)
-      activesupport (>= 3.2.0)
     arel (6.0.3)
     autoprefixer-rails (6.1.2)
       execjs
@@ -240,8 +233,6 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
-    mysql (2.9.1)
-    mysql2 (0.3.20)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
@@ -252,6 +243,7 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     power_assert (0.2.6)
+    psych (2.0.15)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -355,8 +347,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-mysql-adapter
-  ar-octopus
   aws-sdk (< 2.0)
   better_errors
   bootstrap-sass
@@ -371,8 +361,8 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
-  mysql2 (~> 0.3.13)
   paperclip
+  psych
   quiet_assets
   rails (= 4.2.4)
   rails_layout
