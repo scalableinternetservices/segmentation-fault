@@ -13,6 +13,7 @@ gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'fog'
 gem 'test-unit'
+gem 'psych'
 group :development, :test do
   gem 'byebug'
 end
