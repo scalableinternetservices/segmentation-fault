@@ -14,8 +14,7 @@ class UsersController < ApplicationController
 
   def profile
     @posts = @user.posts
-    @bookings = @user.bookings
-    end
+    @bookings = @user.bookings 
   end
 
 private
