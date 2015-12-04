@@ -14,6 +14,7 @@ gem 'aws-sdk', '< 2.0'
 gem 'fog'
 gem 'test-unit'
 gem 'will_paginate'
+gem 'psych'
 
 group :development, :test do
   gem 'byebug'

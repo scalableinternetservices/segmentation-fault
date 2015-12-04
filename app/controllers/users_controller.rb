@@ -20,10 +20,9 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @posts = @user.posts.paginate(:page => params[:page]) if stale?(@user.posts)
-    @bookings = @user.bookings.paginate if stale?(@user.bookings)
+    @posts = @user.posts if stale?(@user.posts)
+    @bookings = @user.bookings if stale?(@user.bookings)
   end
-
 
   private
   def set_user

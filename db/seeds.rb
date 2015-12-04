@@ -10,7 +10,7 @@
 
 require 'faker'
 
-number_of_users = 1000
+number_of_users = 100
 number_of_posts_per_user = 10
 
 def rand_in_range(from, to)
@@ -54,8 +54,8 @@ number_of_users.times do |i|
   end
   if Post.count < (number_of_users * number_of_posts_per_user)
     image = File.open(Dir['app/assets/images/*.png'].sample)
-    post_image = PostImage.create(image: image)
     number_of_posts_per_user.times do |j|
+      post_image = PostImage.create(image: image)
       post = Post.create(name: "Post ##{count}",
                          description: Faker::Lorem.paragraph,
                          price: rand_in_range(100, 1),
@@ -64,7 +64,8 @@ number_of_users.times do |i|
                          updated_at: rand_time(1.days.ago),
                          restrictions: Faker::Lorem.paragraph,
                          categories: "Mansion",
-                         owner: user, post_images: [post_image])
+                         owner: user,
+                         post_images: [post_image])
       count = count + 1
     end
   end
