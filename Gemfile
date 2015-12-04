@@ -30,6 +30,7 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
+  gem 'mysql2', '~> 0.3.13'
 end
 group :development, :test do
   gem 'factory_girl_rails'
@@ -40,4 +41,5 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'mysql2', '~> 0.3.13'
 end
