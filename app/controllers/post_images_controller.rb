@@ -21,7 +21,7 @@ class PostImagesController < ApplicationController
   # GET /post_images/new
   def new
     @post_image = PostImage.new(post_id: params[:post_id]) if stale?(PostImages.all)
-    all_posts = Post.all if stale?(Post.all)
+    all_posts = Post.all.paginate(:page => params[:page]) if stale?(Post.all.paginate(:page => params[:page]))
     @options = all_posts.collect do |s|
       [s.name, s.id]
     end
