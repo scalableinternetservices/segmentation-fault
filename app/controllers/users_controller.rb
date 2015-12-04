@@ -13,9 +13,8 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @posts = @user.posts
-    @bookings = @user.bookings
-    end
+    @posts = @user.posts if stale?(@user.posts)
+    @bookings = @user.bookings if stale?(@user.bookings)
   end
 
 private

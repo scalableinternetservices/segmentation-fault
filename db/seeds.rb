@@ -10,7 +10,7 @@
 
 require 'faker'
 
-number_of_users = 1000
+number_of_users = 100
 number_of_posts_per_user = 10
 
 def rand_in_range(from, to)
