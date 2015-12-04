@@ -13,9 +13,8 @@ gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'fog'
 gem 'test-unit'
-gem 'ar-octopus'
-gem 'activerecord-mysql-adapter'
 gem 'will_paginate'
+gem 'psych'
 
 group :development, :test do
   gem 'byebug'
@@ -23,7 +22,6 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
-  gem 'mysql2', '~> 0.3.13'
 end
 gem 'bootstrap-sass'
 gem 'devise'
