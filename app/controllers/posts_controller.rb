@@ -9,9 +9,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    # @posts = Post.includes(:booking).all.select{|p| p.booking == nil}
-    @posts = Post.all.select{|p| p.booking_id == nil}.paginate(:page => params[:page]) if (Post.select{|p| p.booking == nil}.paginate(:page => params[:page]))
-
+    @posts = Post.select{|p| p.booking_id == nil}.paginate(:page => params[:page]) if stale?(Post.select{|p| p.booking_id == nil}.paginate(:page => params[:page]))
   end
 
   def user_is_owner
