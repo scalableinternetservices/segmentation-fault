@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @posts = Post.select{|p| p.booking_id == nil}.paginate(:page => params[:page]) if stale?(Post.select{|p| p.booking_id == nil}.paginate(:page => params[:page]))
   end
 
-  def user_is_owner
+  def check_user_is_owner
     if current_user.id != @post.user_id
       head(401)
     end
